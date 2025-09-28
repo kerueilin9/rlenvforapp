@@ -1,9 +1,14 @@
+import os
+from dotenv import load_dotenv
 from RLEnvForApp.domain.llmService.ILlmService import ILlmService
 from openai import OpenAI
 
+# Load environment variables from .env file
+load_dotenv()
+
 
 class ChatGPTService(ILlmService):
-    client = OpenAI(api_key='****')
+    client = OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
 
     def get_response(self, prompt: str, system_prompt: str=None, *args) -> str:
         if system_prompt is None:

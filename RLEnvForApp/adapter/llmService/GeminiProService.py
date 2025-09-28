@@ -1,11 +1,16 @@
 # !/usr/bin/env python3
+import os
+from dotenv import load_dotenv
 from RLEnvForApp.domain.llmService.ILlmService import ILlmService
 from langchain.prompts import PromptTemplate
 
 # For Groq-specific models
 from langchain_google_genai import ChatGoogleGenerativeAI
 
-GOOGLE_API_KEY = "****"
+# Load environment variables from .env file
+load_dotenv()
+
+GOOGLE_API_KEY = os.getenv('GEMINI_API_KEY')
 
 class GeminiProService(ILlmService):
     llm = None
